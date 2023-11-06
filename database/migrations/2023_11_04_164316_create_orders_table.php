@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->double('total');
             $table->text('products');
             $table->tinyInteger('status')->default(0);
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

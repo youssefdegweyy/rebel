@@ -39,7 +39,7 @@
                                                     <!--end::Svg Icon-->
 												</span>
 											</span>
-                                        <h3 class="card-label">Edit User Points - {{ $user->name }}</h3>
+                                        <h3 class="card-label">Edit Order Status</h3>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -47,29 +47,61 @@
                                         <div class="card card-custom">
                                             <!--begin::Form-->
                                             <form class="form" method="POST"
-                                                  action="{{ route('users.update', $user) }}">
+                                                  action="{{ route('orders.update', $order) }}"
+                                                  enctype="multipart/form-data">
                                                 @csrf
-                                                @method('PATCH')
+                                                @method('patch')
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label>Points</label>
+                                                        <label>Status</label>
                                                         <div></div>
-                                                        <input class="form-control" name="points" type="number"
-                                                               placeholder="Points" value="{{ $user->points }}"
-                                                               autocomplete="off"/>
-                                                        @if ($errors->has('points'))
+                                                        <select class="form-control" name="status">
+                                                            <option disabled value="-1">Select Status</option>
+                                                            <option
+                                                                value="{{ \App\Models\Order::PENDING }}" {{ $order->status == \App\Models\Order::PENDING ? 'selected' : '' }}>
+                                                                Pending
+                                                            </option>
+                                                            <option
+                                                                value="{{ \App\Models\Order::CONFIRMED }}" {{ $order->status == \App\Models\Order::CONFIRMED ? 'selected' : '' }}>
+                                                                Confirmed
+                                                            </option>
+                                                            <option
+                                                                value="{{ \App\Models\Order::PROGRESS }}" {{ $order->status == \App\Models\Order::PROGRESS ? 'selected' : '' }}>
+                                                                In Progress
+                                                            </option>
+                                                            <option
+                                                                value="{{ \App\Models\Order::DELIVERED }}" {{ $order->status == \App\Models\Order::DELIVERED ? 'selected' : '' }}>
+                                                                Delivered
+                                                            </option>
+                                                            <option
+                                                                value="{{ \App\Models\Order::CANCELLED }}" {{ $order->status == \App\Models\Order::CANCELLED ? 'selected' : '' }}>
+                                                                Cancelled
+                                                            </option>
+                                                        </select>
+                                                        @if ($errors->has('status'))
                                                             <span
-                                                                style="color:red"><b> {{ $errors->first('points') }}</b></span>
+                                                                style="color:red"><b> {{ $errors->first('status') }}</b></span>
                                                         @endif
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label>Note</label>
+                                                        <div></div>
+                                                        <input class="form-control" name="note" type="text"
+                                                               placeholder="Note" value="{{ $order->note }}"
+                                                               autocomplete="off"/>
+                                                        @if ($errors->has('note'))
+                                                            <span style="color:red"><b> {{ $errors->first('note') }}</b></span>
+                                                        @endif
+                                                    </div>
+
                                                 </div>
                                                 <div class="card-footer">
                                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                    <a href="{{ url('/admin/users') }}"
+                                                    <a href="{{ url('admin/orders') }}"
                                                        class="btn btn-secondary">Cancel</a>
                                                 </div>
                                             </form>
-                                            <!--end::Form-->
                                         </div>
                                     </div>
                                 </div>
@@ -81,12 +113,10 @@
                     <!--end::Entry-->
                 </div>
                 <!--end::Content-->
-                <!--begin::Footer-->
-                @include('layouts.footer')
-                <!--end::Footer-->
             </div>
             <!--end::Wrapper-->
         </div>
         <!--end::Page-->
     </div>
 @endsection
+

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\ContactMessageController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Web\AuthController;
@@ -51,12 +52,18 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             });
-            Route::resource('users', UserController::class)->only('index', 'destroy');
+            Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'destroy');
             Route::resource('contact-messages', ContactMessageController::class)->only('index', 'destroy');
             Route::resource('categories', CategoryController::class)->except('show');
             Route::resource('cities', CityController::class)->except('show');
             Route::resource('products', ProductController::class)->names('admin-products')->except('show');
             Route::delete('delete-gallery-item', [ProductController::class, 'delete_gallery_item'])->name('delete_item');
+
+            Route::resource('orders', OrderController::class)->only('index', 'edit', 'update');
+//            Route::post('order-delivered/{id}', [OrderController::class, 'mark_delivered'])->name('mark_order_delivered');
+            Route::post('order-cancelled/{id}', [OrderController::class, 'mark_cancelled'])->name('mark_order_cancelled');
+            Route::get('delivered-orders', [OrderController::class, 'delivered_orders']);
+            Route::get('cancelled-orders', [OrderController::class, 'cancelled_orders']);
 
         });
     });

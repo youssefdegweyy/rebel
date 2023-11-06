@@ -9,7 +9,7 @@
             @csrf
             <div class="form-item">
                 <label for="fname">First Name : </label>
-                <input type="text" id="fname" name="first_name" required/>
+                <input type="text" id="fname" name="first_name" required value="{{ old('first_name') }}"/>
                 @if ($errors->has('first_name'))
                     <span
                         style="color:red"><b> {{ $errors->first('first_name') }}</b></span>
@@ -18,7 +18,7 @@
 
             <div class="form-item">
                 <label for="lname">Last Name : </label>
-                <input type="text" id="lname" name="last_name" required/>
+                <input type="text" id="lname" name="last_name" required value="{{ old('last_name') }}"/>
                 @if ($errors->has('last_name'))
                     <span
                         style="color:red"><b> {{ $errors->first('last_name') }}</b></span>
@@ -27,7 +27,7 @@
 
             <div class="form-item">
                 <label for="mobile">Mobile Number : </label>
-                <input type="text" id="mobile" name="mobile" required/>
+                <input type="text" id="mobile" name="mobile" required value="{{ old('mobile') }}"/>
                 @if ($errors->has('mobile'))
                     <span
                         style="color:red"><b> {{ $errors->first('mobile') }}</b></span>
@@ -36,7 +36,7 @@
 
             <div class="form-item">
                 <label for="bdate">Birthdate : </label>
-                <input type="date" id="bdate" name="dob" required/>
+                <input type="date" id="bdate" name="dob" required value="{{ old('dob') }}"/>
                 @if ($errors->has('dob'))
                     <span
                         style="color:red"><b> {{ $errors->first('dob') }}</b></span>
@@ -45,7 +45,7 @@
 
             <div class="form-item">
                 <label for="email">Email : </label>
-                <input type="email" id="email" name="email" required/>
+                <input type="email" id="email" name="email" required value="{{ old('email') }}"/>
                 @if ($errors->has('email'))
                     <span
                         style="color:red"><b> {{ $errors->first('email') }}</b></span>
@@ -73,7 +73,7 @@
 
             <div class="form-item">
                 <label for="address">Address : </label>
-                <input type="address" id="address" name="address" required/>
+                <input type="address" id="address" name="address" required value="{{ old('address') }}"/>
                 @if ($errors->has('address'))
                     <span
                         style="color:red"><b> {{ $errors->first('address') }}</b></span>

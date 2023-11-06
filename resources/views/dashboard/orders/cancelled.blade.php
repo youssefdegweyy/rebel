@@ -21,15 +21,8 @@
 											<span class="card-icon">
 												<i class="flaticon2-favourite text-primary"></i>
 											</span>
-                                        <h3 class="card-label">Users</h3>
+                                        <h3 class="card-label">Cancelled Orders</h3>
                                     </div>
-                                    {{--                                    <div class="card-toolbar">--}}
-                                    {{--                                        <!--begin::Button-->--}}
-                                    {{--                                        <a href="{{ url('/menus/create') }}"--}}
-                                    {{--                                           class="btn btn-primary font-weight-bolder">--}}
-                                    {{--                                            <i class="la la-plus"></i>New Menu</a>--}}
-                                    {{--                                        <!--end::Button-->--}}
-                                    {{--                                    </div>--}}
                                 </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
@@ -38,63 +31,66 @@
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Points</th>
+                                            <th>User Name</th>
+                                            <th>User Address</th>
+                                            <th>User Mobile</th>
+                                            <th>User Area</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Note</th>
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($users as $user)
+                                        @foreach($orders as $order)
                                             <tr>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->mobile }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->points }}</td>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->user->name }}</td>
+                                                <td>{{ $order->address }}</td>
+                                                <td>{{ $order->mobile }}</td>
+                                                <td>{{ $order->city->name }} - {{ $order->city->price }} EGP</td>
+                                                <td>{{ $order->total }}</td>
+                                                <td>Cancelled</td>
+                                                <td>{{ $order->note }}</td>
                                                 <td>
-                                                    <a href="{{url('admin/users/'.$user->id . '/edit')}}"
-                                                       class="btn btn-primary font-weight-bold mr-1">
-                                                        <i class="flaticon-edit"
-                                                           style="padding-right: 0rem !important;"></i>
-                                                    </a>
+                                                    {{--                                                    <a href="{{url('admin/orders/'.$order->id)}}"--}}
+                                                    {{--                                                       class="btn btn-primary font-weight-bold mr-1">--}}
+                                                    {{--                                                        <i class="flaticon-eye"--}}
+                                                    {{--                                                           style="padding-right: 0rem !important;"></i>--}}
+                                                    {{--                                                    </a>--}}
+
                                                     <a href="#"
-                                                       class="btn btn-danger font-weight-bolder font-size-sm"
+                                                       class="btn btn-primary font-weight-bolder font-size-sm"
                                                        data-toggle="modal"
-                                                       data-target="#delete{{$user->id}}">
-                                                        <i class="flaticon2-rubbish-bin-delete-button"
+                                                       data-target="#details{{$order->id}}">
+                                                        <i class="flaticon-eye"
                                                            style="padding-right: 0rem !important;"></i>
                                                     </a>
 
-                                                    <div class="modal fade" id="delete{{$user->id}}" tabindex="-1"
+                                                    <div class="modal fade" id="details{{$order->id}}" tabindex="-1"
                                                          role="dialog" aria-labelledby="exampleModalLabel"
                                                          aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered"
                                                              role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                        {{ $user->name }}</h5>
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Order
+                                                                        Details - Products</h5>
                                                                     <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                         <i aria-hidden="true" class="ki ki-close"></i>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body" style="text-align: left">
-                                                                    Are you sure you want to delete this user?
+                                                                    @foreach(json_decode($order->products) as $product)
+                                                                        <h3>
+                                                                            {{ $product->name }}
+                                                                            - {{ $product->pivot->quantity }}
+                                                                            * {{ $product->pivot->size }}
+                                                                        </h3>
+                                                                    @endforeach
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <form style="display: inline-block;"
-                                                                          method="POST"
-                                                                          action="{{ route('users.destroy', $user) }}">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <input
-                                                                            type="submit"
-                                                                            class="btn btn-danger font-weight-bolder font-size-sm"
-                                                                            value="Delete">
-                                                                    </form>
                                                                     <button type="button"
                                                                             class="btn btn-light-primary font-weight-bold"
                                                                             data-dismiss="modal">Close
