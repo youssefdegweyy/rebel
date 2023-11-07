@@ -30,15 +30,15 @@ Route::get('contact-us', [WebController::class, 'contact'])->name('contact');
 Route::post('contact-us', [WebController::class, 'store_contact'])->name('store-contact');
 Route::get('products', [WebController::class, 'products'])->name('products');
 Route::get('products/{id}', [WebController::class, 'single_product']);
-Route::post('products/{id}', [WebController::class, 'add_to_cart'])->name('add_to_cart');
+Route::post('products/{id}', [WebController::class, 'add_to_cart'])->name('add_to_cart')->middleware('auth');
 Route::get('signup', [AuthController::class, 'signup_page'])->name('signup')->middleware('guest');
 Route::get('login', [AuthController::class, 'login_page'])->name('web-login')->middleware('guest');
 Route::post('signup', [AuthController::class, 'register'])->name('register');
 Route::post('web-login', [AuthController::class, 'authenticate'])->name('authenticate');
 
-Route::get('cart', [WebController::class, 'user_cart'])->name('cart');
-Route::get('checkout', [WebController::class, 'checkout'])->name('checkout');
-Route::post('checkout', [WebController::class, 'make_order'])->name('make-order');
+Route::get('cart', [WebController::class, 'user_cart'])->name('cart')->middleware('auth');
+Route::get('checkout', [WebController::class, 'checkout'])->name('checkout')->middleware('auth');
+Route::post('checkout', [WebController::class, 'make_order'])->name('make-order')->middleware('auth');
 
 Route::get('get-price', function () {
     $city = request('city');

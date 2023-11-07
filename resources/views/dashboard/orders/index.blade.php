@@ -36,6 +36,7 @@
                                             <th>User Mobile</th>
                                             <th>User Area</th>
                                             <th>Total</th>
+                                            <th>Payment Type</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -48,7 +49,16 @@
                                                 <td>{{ $order->address }}</td>
                                                 <td>{{ $order->mobile }}</td>
                                                 <td>{{ $order->city->name }} - {{ $order->city->price }} EGP</td>
-                                                <td>{{ $order->total }}</td>
+                                                <td>
+                                                    @if($order->payment_type == \App\Models\Order::CASH)
+                                                        {{ $order->total + $order->city->price }} EGP
+
+                                                    @else
+                                                        {{ $order->total }} Points + {{ $order->city->price }} EGP
+                                                        Shipping
+                                                    @endif
+                                                </td>
+                                                <td>{{ $order->payment_type == \App\Models\Order::CASH ? 'Cash' : 'Points' }}</td>
                                                 <td>
                                                     @if($order->status == \App\Models\Order::PENDING)
                                                         Pending
@@ -107,50 +117,50 @@
                                                            style="padding-right: 0rem !important;"></i>
                                                     </a>
 
-{{--                                                    <a href="#"--}}
-{{--                                                       class="btn btn-secondary font-weight-bolder font-size-sm"--}}
-{{--                                                       data-toggle="modal"--}}
-{{--                                                       data-target="#delete{{$order->id}}">--}}
-{{--                                                        <i class="flaticon2-check-mark"--}}
-{{--                                                           style="padding-right: 0rem !important;"></i>--}}
-{{--                                                    </a>--}}
+                                                    {{--                                                    <a href="#"--}}
+                                                    {{--                                                       class="btn btn-secondary font-weight-bolder font-size-sm"--}}
+                                                    {{--                                                       data-toggle="modal"--}}
+                                                    {{--                                                       data-target="#delete{{$order->id}}">--}}
+                                                    {{--                                                        <i class="flaticon2-check-mark"--}}
+                                                    {{--                                                           style="padding-right: 0rem !important;"></i>--}}
+                                                    {{--                                                    </a>--}}
 
-{{--                                                    <div class="modal fade" id="delete{{$order->id}}" tabindex="-1"--}}
-{{--                                                         role="dialog" aria-labelledby="exampleModalLabel"--}}
-{{--                                                         aria-hidden="true">--}}
-{{--                                                        <div class="modal-dialog modal-dialog-centered"--}}
-{{--                                                             role="document">--}}
-{{--                                                            <div class="modal-content">--}}
-{{--                                                                <div class="modal-header">--}}
-{{--                                                                    <h5 class="modal-title" id="exampleModalLabel">Mark--}}
-{{--                                                                        Order Delivered</h5>--}}
-{{--                                                                    <button type="button" class="close"--}}
-{{--                                                                            data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                        <i aria-hidden="true" class="ki ki-close"></i>--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-body" style="text-align: left">--}}
-{{--                                                                    Are you sure you want to move this order to--}}
-{{--                                                                    delivered orders?--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-footer">--}}
-{{--                                                                    <form style="display: inline-block;"--}}
-{{--                                                                          method="POST"--}}
-{{--                                                                          action="{{ route('mark_order_delivered', $order) }}">--}}
-{{--                                                                        @csrf--}}
-{{--                                                                        <input--}}
-{{--                                                                            type="submit"--}}
-{{--                                                                            class="btn btn-primary font-weight-bolder font-size-sm"--}}
-{{--                                                                            value="Confirm">--}}
-{{--                                                                    </form>--}}
-{{--                                                                    <button type="button"--}}
-{{--                                                                            class="btn btn-light-danger font-weight-bold"--}}
-{{--                                                                            data-dismiss="modal">Close--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
+                                                    {{--                                                    <div class="modal fade" id="delete{{$order->id}}" tabindex="-1"--}}
+                                                    {{--                                                         role="dialog" aria-labelledby="exampleModalLabel"--}}
+                                                    {{--                                                         aria-hidden="true">--}}
+                                                    {{--                                                        <div class="modal-dialog modal-dialog-centered"--}}
+                                                    {{--                                                             role="document">--}}
+                                                    {{--                                                            <div class="modal-content">--}}
+                                                    {{--                                                                <div class="modal-header">--}}
+                                                    {{--                                                                    <h5 class="modal-title" id="exampleModalLabel">Mark--}}
+                                                    {{--                                                                        Order Delivered</h5>--}}
+                                                    {{--                                                                    <button type="button" class="close"--}}
+                                                    {{--                                                                            data-dismiss="modal" aria-label="Close">--}}
+                                                    {{--                                                                        <i aria-hidden="true" class="ki ki-close"></i>--}}
+                                                    {{--                                                                    </button>--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                                <div class="modal-body" style="text-align: left">--}}
+                                                    {{--                                                                    Are you sure you want to move this order to--}}
+                                                    {{--                                                                    delivered orders?--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                                <div class="modal-footer">--}}
+                                                    {{--                                                                    <form style="display: inline-block;"--}}
+                                                    {{--                                                                          method="POST"--}}
+                                                    {{--                                                                          action="{{ route('mark_order_delivered', $order) }}">--}}
+                                                    {{--                                                                        @csrf--}}
+                                                    {{--                                                                        <input--}}
+                                                    {{--                                                                            type="submit"--}}
+                                                    {{--                                                                            class="btn btn-primary font-weight-bolder font-size-sm"--}}
+                                                    {{--                                                                            value="Confirm">--}}
+                                                    {{--                                                                    </form>--}}
+                                                    {{--                                                                    <button type="button"--}}
+                                                    {{--                                                                            class="btn btn-light-danger font-weight-bold"--}}
+                                                    {{--                                                                            data-dismiss="modal">Close--}}
+                                                    {{--                                                                    </button>--}}
+                                                    {{--                                                                </div>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </div>--}}
+                                                    {{--                                                    </div>--}}
                                                 </td>
                                             </tr>
                                         @endforeach

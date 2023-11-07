@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->text('products');
             $table->tinyInteger('status')->default(0);
             $table->string('note')->nullable();
+            $table->tinyInteger('payment_type')->nullable();
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('code');
             $table->string('image')->nullable();
             $table->double('price');
+            $table->integer('points_price')->nullable();
             $table->double('discount_price')->nullable();
             $table->text('description');
             $table->double('size_one_stock')->nullable();

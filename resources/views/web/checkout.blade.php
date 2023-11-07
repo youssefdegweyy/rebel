@@ -79,6 +79,19 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Payment</label>
+                                    @if ($errors->has('payment'))
+                                        <span style="color:red"><b> {{ $errors->first('payment') }}</b></span>
+                                    @endif
+                                    <select class="form-control" name="payment_type" id="payment_select" required>
+                                        <option value="0">Please Select</option>
+                                        <option value="1">Cash</option>
+                                        <option value="2">Points</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -88,7 +101,7 @@
                                     </div>
 
                                     <div class="col-6 text-right">
-                                        <strong id="items-cost">{{ $total_price }}</strong><strong> EGP</strong>
+                                        <strong id="items-cost">Select Payment Method First</strong>
                                     </div>
                                 </div>
                             </li>
@@ -113,7 +126,8 @@
 
                                     <div class="col-6 text-right">
                                         <input hidden type="text" name="total" id="total_order_price">
-                                        <strong id="total-cost">{{ $total_price }}</strong><strong> EGP</strong>
+                                        <strong id="total-cost">Select Payment Method</strong><strong
+                                            id="shipping-info"></strong>
                                     </div>
                                 </div>
                             </li>
@@ -146,13 +160,27 @@
                 data: 'city=' + city,
                 success: function (data) {
                     $("#delivery-field").html(data);
-                    var delivery = parseInt($("#delivery-field").html());
-                    var items = parseInt($("#items-cost").html());
-                    var total = delivery + items;
-                    $("#total-cost").html(total);
-                    $("#total_order_price").val(total);
+                    // var delivery = parseInt($("#delivery-field").html());
+                    // var items = parseInt($("#items-cost").html());
+                    // var total = delivery + items;
+                    $("#shipping-info").html(" + " + data + " EGP shipping.");
+                    // $("#total_order_price").val(total);
                 }
             });
+        });
+
+        $('#payment_select').on('change', function () {
+            var payment_method = this.value;
+
+            if (payment_method === "1") {
+                $("#items-cost").html({{ $total_price }} + " EGP");
+                $("#total-cost").html({{ $total_price }} + " EGP");
+                $("#total_order_price").val({{ $total_price }});
+            } else if (payment_method === "2") {
+                $("#items-cost").html({{ $total_points_price }} + " Points");
+                $("#total-cost").html({{ $total_points_price }} + " Points");
+                $("#total_order_price").val({{ $total_points_price }});
+            }
         });
     </script>
 @endsection

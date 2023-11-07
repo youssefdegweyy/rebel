@@ -98,10 +98,17 @@
                                             @endif
                                         </div>
                                     </div>
+                                    @auth
+                                        <div class="col-sm-6">
+                                            <input value="Add to Cart" class="btn btn-primary btn-block" type="submit"/>
+                                        </div>
+                                    @else
+                                        <div class="col-sm-6">
+                                            <a class="btn btn-primary btn-block" href="{{ url('/signup') }}">Add to
+                                                cart</a>
+                                        </div>
+                                    @endauth
 
-                                    <div class="col-sm-6">
-                                        <input value="Add to Cart" class="btn btn-primary btn-block" type="submit"/>
-                                    </div>
                                 </div>
                             </div>
                         </div>

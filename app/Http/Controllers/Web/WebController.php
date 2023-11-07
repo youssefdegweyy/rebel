@@ -104,11 +104,13 @@ class WebController extends Controller
         $cart_products = auth()->user()->cart;
         if (count($cart_products) <= 0) return redirect()->back();
         $total_price = 0;
+        $total_points_price = 0;
         foreach ($cart_products as $product) {
             $total_price += ($product->pivot->quantity * $product->discount_price ?? $product->price);
+            $total_points_price += ($product->points_price * $product->pivot->quantity);
         }
         $cities = City::all();
-        return view('web.checkout', compact('cities', 'total_price'));
+        return view('web.checkout', compact('cities', 'total_price', 'total_points_price'));
     }
 
     public function make_order(Request $request)
@@ -119,7 +121,13 @@ class WebController extends Controller
             'city' => 'required|exists:cities,id',
             'country' => 'required|in:Egypt',
             'total' => 'required',
+            'payment_type' => 'required|in:1,2',
         ]);
+
+        if ($request->payment_type == Order::POINTS) {
+            if (Auth::user()->points < $request->total) return redirect()->back()->with('error', 'You dont have enough points for this order.');
+        }
+
         $order = new Order();
         $order->user_id = \auth()->user()->id;
         $order->city_id = $request->city;
@@ -127,6 +135,7 @@ class WebController extends Controller
         $order->country = $request->country;
         $order->address = $request->address;
         $order->total = $request->total;
+        $order->payment_type = $request->payment_type;
         $products = (auth()->user()->cart);
 
         foreach ($products as $product) {
@@ -152,6 +161,11 @@ class WebController extends Controller
                 }
             }
             \auth()->user()->cart()->detach();
+            if ($order->payment_type == Order::POINTS) {
+                \auth()->user()->update([
+                    'points' => \auth()->user()->points - $request->total,
+                ]);
+            }
             return redirect('/')->with('success_order', 'Order made successfully, wait for confirmation mail!');
         } else return redirect()->back()->with('error', 'Error making order please try again.');
     }

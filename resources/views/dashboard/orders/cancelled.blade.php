@@ -36,6 +36,7 @@
                                             <th>User Mobile</th>
                                             <th>User Area</th>
                                             <th>Total</th>
+                                            <th>Payment Type</th>
                                             <th>Status</th>
                                             <th>Note</th>
                                             <th>Actions</th>
@@ -49,7 +50,16 @@
                                                 <td>{{ $order->address }}</td>
                                                 <td>{{ $order->mobile }}</td>
                                                 <td>{{ $order->city->name }} - {{ $order->city->price }} EGP</td>
-                                                <td>{{ $order->total }}</td>
+                                                <td>
+                                                    @if($order->payment_type == \App\Models\Order::CASH)
+                                                        {{ $order->total + $order->city->price }} EGP
+
+                                                    @else
+                                                        {{ $order->total }} Points + {{ $order->city->price }} EGP
+                                                        Shipping
+                                                    @endif
+                                                </td>
+                                                <td>{{ $order->payment_type == \App\Models\Order::CASH ? 'Cash' : 'Points' }}</td>
                                                 <td>Cancelled</td>
                                                 <td>{{ $order->note }}</td>
                                                 <td>

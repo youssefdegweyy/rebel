@@ -77,13 +77,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link">Points: ({{ (auth()->user()->points) }})
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a class="nav-link"
                                    href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                         this.closest('form').submit();" role="button">
-                                    Logout
+                                    {{ \Illuminate\Support\Facades\Auth::user()->name }} - Logout
                                 </a>
                             </form>
                         </li>

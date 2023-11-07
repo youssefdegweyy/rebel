@@ -76,6 +76,18 @@
                                                     </div>
 
                                                     <div class="form-group">
+                                                        <label>Price in points</label>
+                                                        <div></div>
+                                                        <input class="form-control" name="points_price" type="number"
+                                                               placeholder="Price in points"
+                                                               value="{{old('points_price')}}"/>
+                                                        @if ($errors->has('points_price'))
+                                                            <span
+                                                                style="color:red"><b> {{ $errors->first('points_price') }}</b></span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="form-group">
                                                         <label>Discount Price</label>
                                                         <div></div>
                                                         <input class="form-control" name="discount_price" type="number"

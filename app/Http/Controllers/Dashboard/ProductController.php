@@ -31,6 +31,7 @@ class ProductController extends Controller
         $product->code = $code = generateRandomCode("product");
         $product->name = $request->name;
         $product->price = $request->price;
+        $product->points_price = $request->points_price;
         $product->discount_price = $request->discount_price;
         $product->description = $request->description;
         $product->size_one_stock = $request->size_one_stock;
@@ -51,11 +52,6 @@ class ProductController extends Controller
 
     }
 
-//    public function show($id)
-//    {
-//        //
-//    }
-
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -68,6 +64,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->price = $request->price;
+        $product->points_price = $request->points_price;
         $product->discount_price = $request->discount_price ?? null;
         $product->description = $request->description;
         $product->featured = $request->featured ? 1 : 0;

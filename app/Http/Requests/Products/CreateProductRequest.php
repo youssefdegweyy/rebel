@@ -26,6 +26,7 @@ class CreateProductRequest extends FormRequest
         return [
             'name' => 'required',
             'price' => 'required|numeric|gt:0',
+            'points_price' => 'required|numeric|gt:0',
             'discount_price' => 'nullable|numeric|lt:price',
             'description' => 'required',
             'size_one_stock' => 'nullable|numeric',

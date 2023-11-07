@@ -15,6 +15,9 @@ class Order extends Model
     const DELIVERED = 3;
     const CANCELLED = 4;
 
+    const CASH = 1;
+    const POINTS = 2;
+
     protected $fillable = [
         'status', 'note',
     ];
