@@ -31,10 +31,9 @@
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>User Name</th>
-                                            <th>User Address</th>
-                                            <th>User Mobile</th>
-                                            <th>User Area</th>
+                                            <th>Code</th>
+                                            <th>User</th>
+                                            <th>Address Details</th>
                                             <th>Total</th>
                                             <th>Payment Type</th>
                                             <th>Status</th>
@@ -45,14 +44,12 @@
                                         @foreach($orders as $order)
                                             <tr>
                                                 <td>{{ $order->id }}</td>
+                                                <td>{{ $order->code }}</td>
                                                 <td>{{ $order->user->name }}</td>
-                                                <td>{{ $order->address }}</td>
-                                                <td>{{ $order->mobile }}</td>
-                                                <td>{{ $order->city->name }} - {{ $order->city->price }} EGP</td>
+                                                <td>{{ $order->address }} - {{ $order->mobile }} - {{ $order->city->name }} - {{ $order->city->price }} EGP</td>
                                                 <td>
                                                     @if($order->payment_type == \App\Models\Order::CASH)
                                                         {{ $order->total + $order->city->price }} EGP
-
                                                     @else
                                                         {{ $order->total }} Points + {{ $order->city->price }} EGP
                                                         Shipping
