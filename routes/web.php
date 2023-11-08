@@ -37,8 +37,13 @@ Route::post('signup', [AuthController::class, 'register'])->name('register');
 Route::post('web-login', [AuthController::class, 'authenticate'])->name('authenticate');
 
 Route::get('cart', [WebController::class, 'user_cart'])->name('cart')->middleware('auth');
+Route::post('remove-cart-product/{id}', [WebController::class, 'remove_product_from_cart'])->name('remove-item-from-cart')->middleware('auth');
+Route::post('change-cart-product-quantity/{id}', [WebController::class, 'change_quantity'])->name('change-quantity')->middleware('auth');
 Route::get('checkout', [WebController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::post('checkout', [WebController::class, 'make_order'])->name('make-order')->middleware('auth');
+
+Route::get('orders', [WebController::class, 'orders'])->name('web-orders');
+Route::get('orders/{id}', [WebController::class, 'single_order'])->name('web-orders-single');
 
 Route::get('get-price', function () {
     $city = request('city');

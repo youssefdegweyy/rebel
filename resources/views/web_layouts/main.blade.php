@@ -76,6 +76,13 @@
                             <a class="nav-link" href="{{ url('cart') }}">Cart ({{ count(auth()->user()->cart) }})
                             </a>
                         </li>
+
+                        <li class="nav-item {{ Request::routeIs('web-orders') || Request::routeIs('web-orders-single') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('orders') }}">
+                                Orders
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link">Points: ({{ (auth()->user()->points) }})
                             </a>
@@ -87,7 +94,7 @@
                                    href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                         this.closest('form').submit();" role="button">
-                                    {{ \Illuminate\Support\Facades\Auth::user()->name }} - Logout
+                                    Logout
                                 </a>
                             </form>
                         </li>

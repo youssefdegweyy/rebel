@@ -68,7 +68,7 @@ class WebController extends Controller
         }
 
 
-        $check = UserProduct::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+        $check = UserProduct::where('user_id', Auth::user()->id)->where('product_id', $product->id)->where('size', $request->size)->first();
         if ($check) {
             $total = $request->quantity + $check->quantity;
             if ($check->size == "S" || $check->size == "M") {
@@ -97,6 +97,51 @@ class WebController extends Controller
     {
         $cart_products = auth()->user()->cart;
         return view('web.cart', compact('cart_products'));
+    }
+
+    public function remove_product_from_cart($id)
+    {
+        $product = Product::findOrFail($id);
+        $user_product = UserProduct::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+        if ($user_product->delete()) return redirect()->back()->with('product_remove', 'Removed successfully.');
+        else return redirect()->back()->with('error_product_remove', 'Error removing product from cart.');
+    }
+
+    public function change_quantity($id)
+    {
+        request()->validate([
+            'type' => 'required|in:1,2',
+            'size' => 'required|in:S,M,L,XL'
+        ]);
+        $product = Product::findOrFail($id);
+        $user_product = UserProduct::where('user_id', Auth::user()->id)->where('product_id', $id)->where('size', request('size'))->first();
+        if (!$user_product) return redirect()->back();
+
+        $quantity = $user_product->quantity;
+        if (request('type') == 1) {
+            if ($quantity == 1) {
+                $user_product->delete();
+                return redirect()->back()->with('product_remove', 'Removed.');
+            } else {
+                $user_product->quantity = $quantity - 1;
+                $user_product->save();
+                return redirect()->back();
+            }
+        } elseif (request('type') == 2) {
+            if ($quantity == 5) return redirect()->back()->with('max_quantity', 'Max.');
+
+            $new_quantity = $quantity + 1;
+            if ($user_product->size == "S" || $user_product->size == "M") {
+                if ($product->size_one_stock < $new_quantity) return redirect()->back()->with('over_stock', 'Requested quantity is not available at stock please change the quantity.');
+                if (($product->size_one_stock - $new_quantity) < 0) return redirect()->back()->with('over_stock', 'Requested quantity is not available at stock please change the quantity.');
+            } elseif ($user_product->size == "L" || $user_product->size == "XL") {
+                if ($product->size_two_stock < $new_quantity) return redirect()->back()->with('over_stock', 'Requested quantity is not available at stock please change the quantity.');
+                if (($product->size_two_stock - $new_quantity) < 0) return redirect()->back()->with('over_stock', 'Requested quantity is not available at stock please change the quantity.');
+            }
+            $user_product->quantity = $quantity + 1;
+            $user_product->save();
+            return redirect()->back();
+        }
     }
 
     public function checkout()
@@ -129,6 +174,7 @@ class WebController extends Controller
         }
 
         $order = new Order();
+        $order->code = generateRandomCode("order");
         $order->user_id = \auth()->user()->id;
         $order->city_id = $request->city;
         $order->mobile = $request->mobile;
@@ -168,5 +214,18 @@ class WebController extends Controller
             }
             return redirect('/')->with('success_order', 'Order made successfully, wait for confirmation mail!');
         } else return redirect()->back()->with('error', 'Error making order please try again.');
+    }
+
+    public function orders()
+    {
+        $orders = Order::where('user_id', Auth::user()->id)->orderByDesc('created_at')->get();
+        return view('web.orders', compact('orders'));
+    }
+
+    public function single_order($id)
+    {
+        $order = Order::where('user_id', Auth::user()->id)->first();
+        if (!$order) abort('401', 'Unauthorized access.');
+        return view('web.single-order', compact('order'));
     }
 }

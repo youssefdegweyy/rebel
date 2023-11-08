@@ -1,0 +1,100 @@
+/* Page Heading Styles */
+.page-heading {
+  background: url("order-history-background.jpg") no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  padding: 210px 0px 130px 0px;
+}
+
+.page-heading .text-content h4 {
+  color: #3e7ceb;
+  font-size: 22px;
+}
+
+.page-heading .text-content h2 {
+  color: #fff;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+/* Section Styles */
+.section {
+  padding: 30px 0;
+}
+
+.section-heading h2 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #3e7ceb;
+  margin-bottom: 15px;
+}
+
+/* Order List Styles */
+.order-list {
+  list-style: none;
+  padding: 0;
+}
+
+.order-item {
+  background-color: #fff;
+  border: 2px solid #3e7ceb;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.order-item p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.order-item p strong {
+  font-weight: 700;
+  color: #3e7ceb;
+}
+
+.order-items {
+  list-style: none;
+  padding: 0;
+}
+
+.order-items li {
+  font-size: 16px;
+}
+
+/* Unique Button Style */
+a.filled-button {
+  background-color: #1a6692;
+  color: #fff;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+a.filled-button:hover {
+  background-color: #121212;
+}
+
+/* Responsive Styles (you can adjust as needed) */
+@media (max-width: 768px) {
+  .page-heading .text-content h4 {
+    font-size: 22px;
+  }
+
+  .page-heading .text-content h2 {
+    font-size: 36px;
+  }
+
+  .order-item {
+    padding: 15px;
+  }
+
+  .order-item p {
+    font-size: 14px;
+  }
+}
