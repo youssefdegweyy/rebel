@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\WebController;
 use App\Models\City;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +56,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware('auth')->group(function () {
         Route::middleware('admin')->group(function () {
             Route::get('/dashboard', function () {
-                return view('dashboard');
+                $sold_orders = Order::where('status', Order::DELIVERED)->count();
+                return view('dashboard', compact('sold_orders'));
             });
             Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'destroy');
             Route::resource('contact-messages', ContactMessageController::class)->only('index', 'destroy');
