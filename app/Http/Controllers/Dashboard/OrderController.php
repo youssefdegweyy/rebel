@@ -58,7 +58,7 @@ class OrderController extends Controller
             $user = $order->user;
             if ($order->payment_type == Order::CASH) {
                 $user->update([
-                    'points' => $user->points + ($order->total - $order->city?->price),
+                    'points' => $user->points + $order->total,
                 ]);
             }
         }
@@ -84,7 +84,7 @@ class OrderController extends Controller
         $user = $order->user;
         if ($order->payment_type == Order::CASH) {
             $user->update([
-                'points' => $user->points - ($order->total - $order->city?->price),
+                'points' => $user->points - $order->total,
             ]);
         }
         return redirect()->back()->with('message', 'Order cancelled successfully.');
