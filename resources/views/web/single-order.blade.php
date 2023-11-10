@@ -18,7 +18,7 @@
             <div class="order-details">
                 <p><strong>Total Order:</strong>
                     @if($order->payment_type == \App\Models\Order::CASH)
-                        {{ $order->total }} EGP (including shipping {{ $order->city->price }} EGP)
+                        {{ $order->total }} EGP (+ shipping {{ $order->city->price }} EGP)
                     @else
                         {{ $order->total }} Points + {{ $order->city->price }} EGP shipping
                     @endif
