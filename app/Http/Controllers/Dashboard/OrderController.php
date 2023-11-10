@@ -56,9 +56,11 @@ class OrderController extends Controller
 
         if ($request->status == Order::DELIVERED) {
             $user = $order->user;
-            $user->update([
-                'points' => $user->points + floor($order->total / 10),
-            ]);
+            if ($order->payment_type == Order::CASH) {
+                $user->update([
+                    'points' => $user->points + ($order->total - $order->city?->price),
+                ]);
+            }
         }
         return redirect('/admin/orders')->with('message', 'Status updated successfully.');
     }
@@ -80,9 +82,11 @@ class OrderController extends Controller
             'note' => $request->note,
         ]);
         $user = $order->user;
-        $user->update([
-            'points' => $user->points - floor($order->total / 10),
-        ]);
+        if ($order->payment_type == Order::CASH) {
+            $user->update([
+                'points' => $user->points - ($order->total - $order->city?->price),
+            ]);
+        }
         return redirect()->back()->with('message', 'Order cancelled successfully.');
     }
 
