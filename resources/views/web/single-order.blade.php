@@ -30,7 +30,7 @@
                     @elseif($order->status == \App\Models\Order::CONFIRMED)
                         Order Confirmed
                     @elseif($order->status == \App\Models\Order::PROGRESS)
-                        Shipped
+                        Out For Delivery
                     @elseif($order->status == \App\Models\Order::DELIVERED)
                         Delivered
                     @elseif($order->status == \App\Models\Order::CANCELLED)
