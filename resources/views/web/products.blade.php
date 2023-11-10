@@ -2,13 +2,13 @@
 @section('content')
     <div
         class="page-heading about-heading header-text"
-        style="background-image: url({{ asset('web_assets/images/heading-6-1920x500.jpg') }})"
+        style="background-image: url({{ asset('web_assets/images/posebg.jpg') }})"
     >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <h4>Ruling The Fashion Frontier</h4>
                         <h2>Products</h2>
                     </div>
                 </div>
