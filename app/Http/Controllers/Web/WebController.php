@@ -224,7 +224,7 @@ class WebController extends Controller
 
     public function single_order($id)
     {
-        $order = Order::where('user_id', Auth::user()->id)->first();
+        $order = Order::where('user_id', Auth::user()->id)->whereId($id)->first();
         if (!$order) abort('401', 'Unauthorized access.');
         return view('web.single-order', compact('order'));
     }
