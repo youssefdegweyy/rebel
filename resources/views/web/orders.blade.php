@@ -5,7 +5,7 @@
 @section('content')
     <div
         class="page-heading"
-        style="background-image: url({{ asset('web_assets/images/heading-6-1920x500.jpg') }})"
+        style="background-image: url({{ asset('web_assets/images/twotshirtsback.jpg') }})"
     >
         <div class="text-content">
             <h4>Your Orders</h4>

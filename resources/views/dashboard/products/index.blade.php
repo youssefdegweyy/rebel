@@ -21,7 +21,7 @@
 											<span class="card-icon">
 												<i class="flaticon2-favourite text-primary"></i>
 											</span>
-                                        <h3 class="card-label">Products</h3>
+                                        <h3 class="card-label">Productsss</h3>
                                     </div>
                                     <div class="card-toolbar">
                                         <a href="{{ url('admin/products/create') }}"
