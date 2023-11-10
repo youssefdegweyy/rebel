@@ -33,8 +33,8 @@
                                 <h6>
                                     @if($product->discount_price)
                                         <small>
-                                            <del>{{ $product->discount_price }} EGP</del>
-                                        </small> {{ $product->price }} EGP
+                                            <del>{{ $product->price }} EGP</del>
+                                        </small> {{ $product->discount_price }} EGP
                                     @else
                                         {{ $product->price }} EGP
                                     @endif
