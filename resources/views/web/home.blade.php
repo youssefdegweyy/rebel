@@ -26,15 +26,18 @@
                     <div class="col-md-4">
                         <div class="product-item">
                             <a class="parent-container" href="{{ url('/products/'. $product->id) }}">
-                                <div class="sold-out-container">
-                                    <p class="outofstock-text">Out Of Stock</p>
+                                @if($product->size_one_stock == 0 && $product->size_two_stock == 0)
+                                    <div class="sold-out-container">
+                                        <p class="outofstock-text">Out Of Stock</p>
+                                    </div>
+                                @endif
+                                <div class="imageContainer">
+
+                                    <img class="object-fit:cover; background-position:center"
+                                         src="{{ asset($product->image) }}" alt=""/>
                                 </div>
-                                <div  class="imageContainer">
-                               
-                                <img class="object-fit:cover; background-position:center" src="{{ asset($product->image) }}" alt=""/>
-                                </div>
-                            </a>        
-                            
+                            </a>
+
                             <div class="down-content">
                                 <small style="color:white;">{{ $product->category->name }}</small>
                                 <a href="{{ url('/products/'. $product->id) }}">
@@ -42,12 +45,13 @@
                                 </a>
                                 <h6>
                                     @if($product->discount_price)
-                                    <div style="display:flex; gap:10px; align-items:center;">
-                                            <del   style="color:white; font-size:15px; text-align:center;">
-                                            {{ $product->price }} EGP
-                                         </del>
-                                        <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->discount_price }} EGP</p> 
-                                    </div>
+                                        <div style="display:flex; gap:10px; align-items:center;">
+                                            <del style="color:white; font-size:15px; text-align:center;">
+                                                {{ $product->price }} EGP
+                                            </del>
+                                            <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->discount_price }}
+                                                EGP</p>
+                                        </div>
                                     @else
                                         {{ $product->price }} EGP
                                     @endif
