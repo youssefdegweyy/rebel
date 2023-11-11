@@ -882,6 +882,31 @@ footer .inner-content p a {
   gap: 15px;
   align-items: center;
 }
+.parent-container{
+  position: relative;
+}
+.sold-out-container{
+  position:absolute;
+  background-color: #121212;
+  width: 80%;
+  margin:auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.outofstock-text{
+  color: #eee;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 800;
+
+}
 
 /* Responsive Style */
 @media (max-width: 768px) {

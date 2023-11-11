@@ -25,9 +25,12 @@
                 @forelse($products as $product)
                     <div class="col-md-4">
                         <div class="product-item">
-                            <a href="{{ url('/products/'. $product->id) }}">
+                            <a class="parent-container" href="{{ url('/products/'. $product->id) }}">
+                                <div class="sold-out-container">
+                                    <p class="outofstock-text">Out Of Stock</p>
+                                </div>
                                 <div  class="imageContainer">
-                                <div style="background-image: url('{{ asset($product->image) }}');"></div>
+                               
                                 <img class="object-fit:cover; background-position:center" src="{{ asset($product->image) }}" alt=""/>
                                 </div>
                             </a>        
