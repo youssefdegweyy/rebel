@@ -57,6 +57,12 @@ ul.social-icons li a:hover {
   color: #fff;
 }
 
+
+.codeInnerDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
 a.filled-button {
   background-color: #3e7ceb;
   color: #fff;
@@ -223,7 +229,7 @@ header .navbar {
 .background-header .navbar-nav .nav-link.active,
 .background-header .navbar-nav .nav-link.show,
 .background-header .navbar-nav .show > .nav-link {
-  color: #3e7ceb !important;
+  color: #ffffff !important;
 }
 .navbar .navbar-brand {
   float: left;
@@ -319,32 +325,88 @@ header .navbar {
   color: #3e7ceb;
 }
 
-.product-item {
-  border-radius: 15px;
+
+.productTitle{
+  color: white;
 }
 
+.sizePicker{
+  display: flex;
+  gap: 15px;
+}
+
+.quanitityDiv{
+  display: flex;
+  gap: 20px;
+}
+
+.plusBox{
+  background-color: #4a4a4a;
+  color: white;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantityField{
+  background-color: white;
+  width: 50px;
+  border-radius: 3px;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+
+.sizeOption{
+  background-color: #4a4a4a;
+  color: white;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
 .product-item {
   border: 2px solid #3e7ceb;
   margin-bottom: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 15px;
+  min-height: 590px;
+  max-height: 590px;  
+
 }
 
 .product-item .down-content {
   padding: 30px;
   position: relative;
+  
 }
+.imageContainer{
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}   
+
 
 .product-item img {
   width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-}
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
 
+} 
+
+.productDesc{
+  max-height: 75px;
+  text-overflow: hidden;
+  overflow: hidden;
+}
 .product-item .down-content h4 {
   font-size: 17px;
   color: #3e7ceb;
@@ -497,11 +559,10 @@ footer .inner-content p a {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 .page-heading .container {
   position: relative;
-  z-index: 2;
+  z-index: 10;
 }
 .products ul.pages {
   margin-top: 30px;
@@ -742,7 +803,7 @@ footer .inner-content p a {
 
 .contact-form textarea:focus {
   box-shadow: none;
-  border: 1px solid #eee;
+  border: 1px solid #eee; 
 }
 
 .contact-form button.filled-button {
@@ -813,6 +874,13 @@ footer .inner-content p a {
 
 .section .section-heading {
   margin-bottom: 45px;
+}
+
+.codeDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
 }
 
 /* Responsive Style */

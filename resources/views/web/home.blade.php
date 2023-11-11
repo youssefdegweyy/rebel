@@ -26,8 +26,12 @@
                     <div class="col-md-4">
                         <div class="product-item">
                             <a href="{{ url('/products/'. $product->id) }}">
-                                <img src="{{ asset($product->image) }}" alt=""/>
-                            </a>
+                                <div  class="imageContainer">
+                                <div style="background-image: url('{{ asset($product->image) }}');"></div>
+                                <img class="object-fit:cover; background-position:center" src="{{ asset($product->image) }}" alt=""/>
+                                </div>
+                            </a>        
+                            
                             <div class="down-content">
                                 <small style="color:white;">{{ $product->category->name }}</small>
                                 <a href="{{ url('/products/'. $product->id) }}">
@@ -35,14 +39,17 @@
                                 </a>
                                 <h6>
                                     @if($product->discount_price)
-                                        <small>
-                                            <del>{{ $product->discount_price }} EGP</del>
-                                        </small> {{ $product->price }} EGP
+                                    <div style="display:flex; gap:10px; align-items:center;">
+                                            <del   style="color:white; font-size:15px; text-align:center;">
+                                            {{ $product->price }} EGP
+                                         </del>
+                                        <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->discount_price }} EGP</p> 
+                                    </div>
                                     @else
                                         {{ $product->price }} EGP
                                     @endif
                                 </h6>
-                                <p>
+                                <p class="productDesc" style="color:white;">
                                     {{ $product->description }}
                                 </p>
                             </div>
@@ -62,8 +69,8 @@
                     <div class="inner-content">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
-                                <p>
+                                <h4 style="color:#3e7ceb;">Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
+                                <p style="color:white">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Itaque corporis amet elite author nulla.
                                 </p>

@@ -37,21 +37,35 @@
 }
 
 .order-item {
-  background-color: #fff;
-  border: 2px solid #3e7ceb;
+  background-color:  #4a4a4a;
+  border: 0px solid #3e7ceb;
   margin-bottom: 30px;
   padding: 20px;
   border-radius: 10px;
+  color: white;
+}
+
+.productNameDiv{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.liContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .order-item p {
   font-size: 16px;
   margin: 10px 0;
+  color: white;
 }
 
 .order-item p strong {
   font-weight: 700;
-  color: #3e7ceb;
+  color: white;
 }
 
 .order-items {

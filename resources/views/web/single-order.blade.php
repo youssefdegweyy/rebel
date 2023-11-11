@@ -16,15 +16,15 @@
                 <h2>Order Information</h2>
             </div>
             <div class="order-details">
-                <p><strong>Total Order:</strong>
+                <p style="color:white"><strong>Total Order:</strong>
                     @if($order->payment_type == \App\Models\Order::CASH)
                         {{ $order->total }} EGP (+ shipping {{ $order->city->price }} EGP)
                     @else
                         {{ $order->total }} Points + {{ $order->city->price }} EGP shipping
                     @endif
                 </p>
-                <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($order->created_at)->toDateString() }}</p>
-                <p><strong>Status:</strong>
+                <p style="color:white"><strong>Date:</strong> {{ \Carbon\Carbon::parse($order->created_at)->toDateString() }}</p>
+                <p style="color:white"><strong>Status:</strong>
                     @if($order->status == \App\Models\Order::PENDING)
                         Pending
                     @elseif($order->status == \App\Models\Order::CONFIRMED)
