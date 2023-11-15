@@ -47,10 +47,11 @@
                                                 {{ $product->price }} EGP
                                             </del>
                                             <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->discount_price }}
-                                                EGP</p>
+                                                EGP - {{ $product->points_price }} Points</p>
                                         </div>
                                     @else
-                                        {{ $product->price }} EGP
+                                        <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->price }}
+                                            EGP - {{ $product->points_price }} Points</p>
                                     @endif
                                 </h6>
                                 <p class="productDesc" style="color:white;">

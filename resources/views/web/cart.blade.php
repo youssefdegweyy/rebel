@@ -31,19 +31,22 @@
         @php
             $total_items = 0;
             $total_price = 0;
+            $total_points = 0;
         @endphp
         <div class="cart-items">
             <!-- Sample cart items go here -->
             @forelse($cart_products as $product)
                 @php
                     $total_items += $product->pivot->quantity;
-                    $total_price += ($product->pivot->quantity * $product->discount_price ?? $product->price)
+                    $total_price += ($product->pivot->quantity * ($product->discount_price ?? $product->price));
+                    $total_points += ($product->pivot->quantity * $product->points_price);
                 @endphp
                 <div class="cart-item">
                     <img src="{{ asset($product->image) }}" alt="Product Image"/>
                     <div class="item-details">
                         <h3>{{ $product->name }} - {{ $product->pivot->size }}</h3>
-                        <p>Price: {{ $product->discount_price ?? $product->price }} EGP</p>
+                        <p>Price: {{ $product->discount_price ?? $product->price }} EGP - {{ $product->points_price }}
+                            Points</p>
                     </div>
                     <div class="item-quantity">
                         <form method="POST" action="{{ route('change-quantity', $product->id) }}">
@@ -61,8 +64,8 @@
                         </form>
                     </div>
                     <div class="item-total">
-                        <p>Total: {{ ($product->pivot->quantity * $product->discount_price ?? $product->price) }}
-                            EGP</p>
+                        <p>Total: {{ ($product->pivot->quantity * ($product->discount_price ?? $product->price)) }}
+                            EGP - {{ ($product->pivot->quantity * $product->points_price) }} Points</p>
                     </div>
                     <div class="item-remove">
                         <form method="POST" action="{{ route('remove-item-from-cart', $product->id) }}">
@@ -78,7 +81,8 @@
         @if(count(auth()->user()->cart) > 0)
             <div class="cart-summary">
                 <p>Total Items: {{ $total_items }}</p>
-                <p>Subtotal: {{ $total_price }} EGP</p>
+                <p>Subtotal: {{ $total_price }} EGP -
+                    {{ $total_points }} Points</p>
                 <a href="{{ url('/checkout') }}">
                     <button>Proceed to Checkout</button>
                 </a>
