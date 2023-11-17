@@ -2,7 +2,7 @@
 @section('content')
     <div
         class="page-heading about-heading header-text"
-        style="background-image: url({{ asset('web_assets/images/posebg.jpg') }})"
+        style="background-image: url({{ asset('web_assets/images/backg.jpg') }})"
     >
         <div class="container">
             <div class="row">
