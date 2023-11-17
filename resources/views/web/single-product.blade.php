@@ -19,7 +19,7 @@
 </script>
     <div
         class="page-heading about-heading header-text"
-        style="background-image: url({{ asset('web_assets/images/posebg.jpg') }})"
+        
     >
         <div class="container">
             <div class="row">

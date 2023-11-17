@@ -28,11 +28,8 @@
                 <div class="col-md-4">
                     <div class="left-content">
                         <h4>About our office</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed
-                            voluptate nihil eumester consectetur similiqu consectetur.<br/><br/>Lorem
-                            ipsum dolor sit amet, consectetur adipisic elit. Et,
-                            consequuntur, modi mollitia corporis ipsa voluptate corrupti.
+                        <p style="color: white;">
+                        At Rebel, we're not following trends; we're setting them. Our commitment to quality, originality, and fearless self-expression is at the heart of everything we do. Join us on this fashion journey as we empower you to stand out, be bold, and make your mark on the world.
                         </p>
                         <ul class="social-icons">
                             <li>
