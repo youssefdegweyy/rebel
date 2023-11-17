@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmationMail;
 use App\Models\City;
 use App\Models\ContactMessage;
 use App\Models\Order;
@@ -10,6 +11,7 @@ use App\Models\Product;
 use App\Models\UserProduct;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
@@ -151,10 +153,16 @@ class WebController extends Controller
         $total_price = 0;
         $total_points_price = 0;
         foreach ($cart_products as $product) {
-            $total_price += ($product->pivot->quantity * $product->discount_price ?? $product->price);
+            if ($product->discount_price) {
+                $product_price = $product->discount_price * $product->pivot->quantity;
+                $total_price += $product_price;
+            } else {
+                $product_price = $product->price * $product->pivot->quantity;
+                $total_price += $product_price;
+            }
             $total_points_price += ($product->points_price * $product->pivot->quantity);
         }
-        $cities = City::all();
+        $cities = City::orderBy('name')->get();
         return view('web.checkout', compact('cities', 'total_price', 'total_points_price'));
     }
 
@@ -163,14 +171,34 @@ class WebController extends Controller
         $request->validate([
             'mobile' => 'required|regex:/(01)[0-9]{9}/|digits:11',
             'address' => 'required',
+            'town' => 'required',
             'city' => 'required|exists:cities,id',
             'country' => 'required|in:Egypt',
-            'total' => 'required',
+            'total' => 'required|gt:0',
             'payment_type' => 'required|in:1,2',
         ]);
 
+        $cart_products = auth()->user()->cart;
+        if (count($cart_products) <= 0) return redirect()->back();
+        $total_price = 0;
+        $total_points_price = 0;
+        foreach ($cart_products as $product) {
+            if ($product->discount_price) {
+                $product_price = $product->discount_price * $product->pivot->quantity;
+                $total_price += $product_price;
+            } else {
+                $product_price = $product->price * $product->pivot->quantity;
+                $total_price += $product_price;
+            }
+            $total_points_price += ($product->points_price * $product->pivot->quantity);
+        }
+
+
         if ($request->payment_type == Order::POINTS) {
+            if ($request->total != $total_points_price) return redirect()->back()->with('error', 'Error in total number.');
             if (Auth::user()->points < $request->total) return redirect()->back()->with('error', 'You dont have enough points for this order.');
+        } elseif ($request->payment_type == Order::CASH) {
+            if ($request->total != $total_price) return redirect()->back()->with('error', 'Error in total number.');
         }
 
         $order = new Order();
@@ -180,6 +208,7 @@ class WebController extends Controller
         $order->mobile = $request->mobile;
         $order->country = $request->country;
         $order->address = $request->address;
+        $order->town = $request->town;
         $order->total = $request->total;
         $order->payment_type = $request->payment_type;
         $products = (auth()->user()->cart);
@@ -212,7 +241,7 @@ class WebController extends Controller
                     'points' => \auth()->user()->points - $request->total,
                 ]);
             }
-            return redirect('/')->with('success_order', 'Order made successfully, wait for confirmation mail!');
+            if (Mail::to(\auth()->user()->email)->send(new OrderConfirmationMail(\auth()->user()->name, $order))) return redirect('/')->with('success_order', 'Order made successfully, wait for confirmation mail!');
         } else return redirect()->back()->with('error', 'Error making order please try again.');
     }
 

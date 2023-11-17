@@ -35,15 +35,6 @@
             </div>
 
             <div class="form-item">
-                <label for="bdate">Birthdate : </label>
-                <input type="date" id="bdate" name="dob" required value="{{ old('dob') }}"/>
-                @if ($errors->has('dob'))
-                    <span
-                        style="color:red"><b> {{ $errors->first('dob') }}</b></span>
-                @endif
-            </div>
-
-            <div class="form-item">
                 <label for="email">Email : </label>
                 <input type="email" id="email" name="email" required value="{{ old('email') }}"/>
                 @if ($errors->has('email'))
@@ -71,40 +62,6 @@
                 />
             </div>
 
-            <div class="form-item">
-                <label for="address">Address : </label>
-                <input type="address" id="address" name="address" required value="{{ old('address') }}"/>
-                @if ($errors->has('address'))
-                    <span
-                        style="color:red"><b> {{ $errors->first('address') }}</b></span>
-                @endif
-            </div>
-
-            <div class="form-item">
-                <label for="country">Select a Country:</label>
-                <select name="country" class="form-control" id="country">
-                    <option value="0" label="Select a country ... " selected="selected">
-                        Select a country ...
-                    </option>
-                </select>
-                @if ($errors->has('country'))
-                    <span
-                        style="color:red"><b> {{ $errors->first('country') }}</b></span>
-                @endif
-            </div>
-
-            <div class="form-item">
-                <label for="city">Select a City:</label>
-                <select name="city" class="form-control" id="city">
-                    <option value="0" label="Select a city ... " selected="selected">
-                        Select a city ...
-                    </option>
-                </select>
-                @if ($errors->has('city'))
-                    <span
-                        style="color:red"><b> {{ $errors->first('city') }}</b></span>
-                @endif
-            </div>
             @if (Session::has('error'))
                 <script>
                     alert("Error in registration, please try again.");
@@ -116,7 +73,4 @@
             </div>
         </form>
     </div>
-@endsection
-@section('scripts')
-    <script src="{{asset('web_assets/js/countries.js')}}"></script>
 @endsection

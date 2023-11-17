@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderDeliveryMail;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -61,6 +63,7 @@ class OrderController extends Controller
                     'points' => $user->points + $order->total,
                 ]);
             }
+            Mail::to($order->user->email)->send(new OrderDeliveryMail($order->user->name, $order));
         }
         return redirect('/admin/orders')->with('message', 'Status updated successfully.');
     }

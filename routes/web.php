@@ -8,9 +8,12 @@ use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\WebController;
+use App\Mail\OrderConfirmationMail;
 use App\Models\City;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +28,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WebController::class, 'home'])->name('home');
+
+Route::get('/test-mail', function () {
+    $email = "hishamkisho1@gmail.com";
+    $name = "Hisham";
+    $order = "Order";
+    if ($mail = Mail::to($email)->send(new OrderConfirmationMail($name, $order))) return "ok";
+    else return $mail;
+});
 
 //Route::get('home', [WebController::class, 'home'])->name('home');
 Route::get('contact-us', [WebController::class, 'contact'])->name('contact');
@@ -57,7 +68,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::middleware('admin')->group(function () {
             Route::get('/dashboard', function () {
                 $sold_orders = Order::where('status', Order::DELIVERED)->count();
-                return view('dashboard', compact('sold_orders'));
+                $pending_orders = Order::where('status', Order::PENDING)->count();
+                $cancelled_orders = Order::where('status', Order::CANCELLED)->count();
+                $confirmed_orders = Order::where('status', Order::CONFIRMED)->count();
+                $progress_orders = Order::where('status', Order::PROGRESS)->count();
+                $total_users = User::where('role', 1)->count();
+                return view('dashboard', compact('sold_orders', 'total_users', 'pending_orders', 'cancelled_orders', 'confirmed_orders', 'progress_orders'));
             });
             Route::resource('users', UserController::class)->only('index', 'edit', 'update', 'destroy');
             Route::resource('contact-messages', ContactMessageController::class)->only('index', 'destroy');

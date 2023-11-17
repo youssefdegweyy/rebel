@@ -79,7 +79,7 @@
                             <div class="col-md-8">
                                 <h4 style="color:#3e7ceb;">Always Here for You: Our 24/7 Support Team Ready to Resolve Any Issues.</h4>
                                 <p style="color:white">
-                                Our team is dedicated to assisting you 24/7, ready to address any issues you may encounter. Simply send us a message if you face any problems, and we'll work diligently to provide solutions. Your satisfaction is our priority.".
+                                Our team is dedicated to assisting you 24/7, ready to address any issues you may encounter. Simply send us a message if you face any problems, and we'll work diligently to provide solutions. Your satisfaction is our priority."
                                 </p>
                             </div>
                             <div class="col-lg-4 col-md-6 text-right">

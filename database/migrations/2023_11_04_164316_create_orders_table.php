@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('mobile');
             $table->string('address');
             $table->string('country');
+            $table->string('town');
             $table->unsignedBigInteger('city_id')->nullable();
             $table->double('total');
             $table->text('products');

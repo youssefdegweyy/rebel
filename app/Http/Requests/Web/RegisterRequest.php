@@ -27,12 +27,8 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'mobile' => 'required|regex:/(01)[0-9]{9}/|digits:11|unique:users,mobile',
-            'dob' => 'required|date',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
-            'address' => 'required',
-            'country' => 'required|not_in:0',
-            'city' => 'required|not_in:0',
         ];
     }
 }

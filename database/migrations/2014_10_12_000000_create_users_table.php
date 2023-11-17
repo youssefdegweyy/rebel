@@ -17,10 +17,6 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('mobile')->nullable();
-            $table->string('dob')->nullable();
-            $table->string('address')->nullable();
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
             $table->double('points')->default(0);
             $table->string('password');
             $table->boolean('role')->default(1);

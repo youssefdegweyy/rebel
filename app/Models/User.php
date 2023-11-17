@@ -19,13 +19,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'dob',
         'mobile',
-        'country',
-        'city',
         'role',
         'points',
-        'address'
     ];
 
     use HasApiTokens, HasFactory, Notifiable;

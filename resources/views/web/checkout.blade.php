@@ -2,7 +2,7 @@
 @section('content')
     <div
         class="page-heading about-heading header-text"
-        >
+    >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -38,19 +38,6 @@
 
                             <div class="col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label class="control-label">Address</label>
-                                    @if ($errors->has('address'))
-                                        <span style="color:red"><b> {{ $errors->first('address') }}</b></span>
-                                    @endif
-                                    <input type="text" placeholder="Enter address" class="form-control" name="address"
-                                           required
-                                           value="{{ old('address') }}"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="form-group">
                                     <label class="control-label">Country:</label>
                                     @if ($errors->has('country'))
                                         <span style="color:red"><b> {{ $errors->first('country') }}</b></span>
@@ -60,9 +47,13 @@
                                     </select>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label class="control-label">City:</label>
+                                    <label class="control-label">Zone</label>
                                     @if ($errors->has('city'))
                                         <span style="color:red"><b> {{ $errors->first('city') }}</b></span>
                                     @endif
@@ -79,6 +70,33 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Town</label>
+                                    @if ($errors->has('town'))
+                                        <span style="color:red"><b> {{ $errors->first('town') }}</b></span>
+                                    @endif
+                                    <input type="text" placeholder="Enter Town - ex: Maadi" class="form-control"
+                                           name="town"
+                                           required
+                                           value="{{ old('town') }}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label">Address</label>
+                                    @if ($errors->has('address'))
+                                        <span style="color:red"><b> {{ $errors->first('address') }}</b></span>
+                                    @endif
+                                    <input type="text" placeholder="Enter address" class="form-control" name="address"
+                                           required
+                                           value="{{ old('address') }}"/>
+                                </div>
+                            </div>
+
+
                             <div class="col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label class="control-label">Payment</label>
@@ -86,7 +104,7 @@
                                         <span style="color:red"><b> {{ $errors->first('payment') }}</b></span>
                                     @endif
                                     <select class="form-control" name="payment_type" id="payment_select" required>
-                                        <option value="0">Please Select</option>
+                                        <option disabled selected>Please Select</option>
                                         <option value="1">Cash</option>
                                         <option value="2">Points</option>
                                     </select>

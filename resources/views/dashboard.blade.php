@@ -46,6 +46,42 @@
                                     <div class="row">
                                         <div class="col-xl-3">
                                             <!--begin::Stats Widget 30-->
+                                            <a href="{{ url('/admin/users') }}">
+                                                <div class="card card-custom bg-info card-stretch gutter-b">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-white">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                                                        <span
+                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ $total_users }}</span>
+                                                        <span
+                                                            class="font-weight-bold text-white font-size-sm">Users Registered</span>
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                            </a>
+                                            <!--end::Stats Widget 30-->
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <!--begin::Stats Widget 30-->
                                             <a href="{{ url('/admin/delivered-orders') }}">
                                                 <div class="card card-custom bg-primary card-stretch gutter-b">
                                                     <!--begin::Body-->
@@ -72,43 +108,7 @@
 												</span>
                                                         <span
                                                             class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ $sold_orders }}</span>
-                                                        <span class="font-weight-bold text-white font-size-sm">Total Orders Delivered</span>
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                            </a>
-                                            <!--end::Stats Widget 30-->
-                                        </div>
-                                        <div class="col-xl-3">
-                                            <!--begin::Stats Widget 30-->
-                                            <a href="">
-                                                <div class="card card-custom bg-info card-stretch gutter-b">
-                                                    <!--begin::Body-->
-                                                    <div class="card-body">
-												<span class="svg-icon svg-icon-2x svg-icon-white">
-													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
-													<svg xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                         height="24px" viewBox="0 0 24 24" version="1.1">
-														<g stroke="none" stroke-width="1" fill="none"
-                                                           fill-rule="evenodd">
-															<rect x="0" y="0" width="24" height="24"/>
-															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
-                                                                  height="16" rx="1.5"/>
-															<rect fill="#000000" x="8" y="9" width="3" height="11"
-                                                                  rx="1.5"/>
-															<rect fill="#000000" x="18" y="11" width="3" height="9"
-                                                                  rx="1.5"/>
-															<rect fill="#000000" x="3" y="13" width="3" height="7"
-                                                                  rx="1.5"/>
-														</g>
-													</svg>
-                                                    <!--end::Svg Icon-->
-												</span>
-                                                        <span
-                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block"></span>
-                                                        <span
-                                                            class="font-weight-bold text-white font-size-sm">Total</span>
+                                                        <span class="font-weight-bold text-white font-size-sm">Orders Delivered</span>
                                                     </div>
                                                     <!--end::Body-->
                                                 </div>
@@ -117,43 +117,7 @@
                                         </div>
                                         <div class="col-xl-3">
                                             <!--begin::Stats Widget 31-->
-                                            <a href="">
-                                                <div class="card card-custom bg-danger card-stretch gutter-b">
-                                                    <!--begin::Body-->
-                                                    <div class="card-body">
-												<span class="svg-icon svg-icon-2x svg-icon-white">
-													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
-													<svg xmlns="http://www.w3.org/2000/svg"
-                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                                                         height="24px" viewBox="0 0 24 24" version="1.1">
-														<g stroke="none" stroke-width="1" fill="none"
-                                                           fill-rule="evenodd">
-															<rect x="0" y="0" width="24" height="24"/>
-															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
-                                                                  height="16" rx="1.5"/>
-															<rect fill="#000000" x="8" y="9" width="3" height="11"
-                                                                  rx="1.5"/>
-															<rect fill="#000000" x="18" y="11" width="3" height="9"
-                                                                  rx="1.5"/>
-															<rect fill="#000000" x="3" y="13" width="3" height="7"
-                                                                  rx="1.5"/>
-														</g>
-													</svg>
-                                                    <!--end::Svg Icon-->
-												</span>
-                                                        <span
-                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block"></span>
-                                                        <span
-                                                            class="font-weight-bold text-white font-size-sm">Total</span>
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                            </a>
-                                            <!--end::Stats Widget 31-->
-                                        </div>
-                                        <div class="col-xl-3">
-                                            <!--begin::Stats Widget 32-->
-                                            <a href="">
+                                            <a href="{{ url('/admin/orders') }}">
                                                 <div class="card card-custom bg-dark card-stretch gutter-b">
                                                     <!--begin::Body-->
                                                     <div class="card-body">
@@ -178,14 +142,125 @@
                                                     <!--end::Svg Icon-->
 												</span>
                                                         <span
-                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 text-hover-primary d-block"></span>
+                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ $pending_orders }}</span>
                                                         <span
-                                                            class="font-weight-bold text-white font-size-sm">Total</span>
+                                                            class="font-weight-bold text-white font-size-sm">Orders Pending</span>
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                            </a>
+                                            <!--end::Stats Widget 31-->
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <!--begin::Stats Widget 32-->
+                                            <a href="{{ url('/admin/cancelled-orders') }}">
+                                                <div class="card card-custom bg-danger card-stretch gutter-b">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-white">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                                                        <span
+                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 text-hover-primary d-block">{{ $cancelled_orders }}</span>
+                                                        <span
+                                                            class="font-weight-bold text-white font-size-sm">Orders Cancelled</span>
                                                     </div>
                                                     <!--end::Body-->
                                                 </div>
                                                 <!--end::Stats Widget 32-->
                                             </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-3">
+                                            <!--begin::Stats Widget 30-->
+                                            <a href="{{ url('/admin/orders') }}">
+                                                <div class="card card-custom bg-dark card-stretch gutter-b">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-white">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                                                        <span
+                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ $confirmed_orders }}</span>
+                                                        <span
+                                                            class="font-weight-bold text-white font-size-sm">Confirmed Orders</span>
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                            </a>
+                                            <!--end::Stats Widget 30-->
+                                        </div>
+
+                                        <div class="col-xl-3">
+                                            <!--begin::Stats Widget 30-->
+                                            <a href="{{ url('/admin/orders') }}">
+                                                <div class="card card-custom bg-info card-stretch gutter-b">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-white">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                                                        <span
+                                                            class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">{{ $progress_orders }}</span>
+                                                        <span
+                                                            class="font-weight-bold text-white font-size-sm">In Progress Orders</span>
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                            </a>
+                                            <!--end::Stats Widget 30-->
                                         </div>
                                     </div>
                                 </div>

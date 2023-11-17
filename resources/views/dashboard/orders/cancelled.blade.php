@@ -47,7 +47,7 @@
                                                 <td>{{ $order->id }}</td>
                                                 <td>{{ $order->code }}</td>
                                                 <td>{{ $order->user->name }}</td>
-                                                <td>{{ $order->address }} - {{ $order->mobile }} - {{ $order->city->name }} - {{ $order->city->price }} EGP</td>
+                                                <td>{{ $order->town }}, {{ $order->address }} - {{ $order->mobile }} - {{ $order->city->name }} - {{ $order->city->price }} EGP</td>
                                                 <td>
                                                     @if($order->payment_type == \App\Models\Order::CASH)
                                                         {{ $order->total + $order->city->price }} EGP
