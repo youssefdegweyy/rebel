@@ -38,7 +38,7 @@
                                 </div>
                             </a>
 
-                            <div class="down-content">
+                            <div class="down-content " style ="width: 100%">
                                 <small style="color:white;">{{ $product->category->name }}</small>
                                 <a href="{{ url('/products/'. $product->id) }}">
                                     <h4>{{ $product->name }}</h4>
@@ -49,11 +49,11 @@
                                             <del style="color:white; font-size:15px; text-align:center;">
                                                 {{ $product->price }} EGP
                                             </del>
-                                            <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->discount_price }}
+                                            <p style="color:#3e7ceb; margin:0px; font-size:17px; font-weight:600">    {{ $product->discount_price }}
                                                 EGP - {{ $product->points_price }} Points</p>
                                         </div>
                                     @else
-                                        <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $product->price }}
+                                        <p style="color:#3e7ceb; margin:0px; font-size:17px; font-weight:600 ">    {{ $product->price }}
                                             EGP - {{ $product->points_price }} Points</p>
                                     @endif
                                 </h6>

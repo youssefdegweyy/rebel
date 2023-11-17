@@ -386,6 +386,7 @@ header .navbar {
   padding: 30px;
   position: relative;
   
+  
 }
 .imageContainer{
   width: 100%;
@@ -907,6 +908,18 @@ footer .inner-content p a {
   font-weight: 800;
 
 }
+.cart-list{
+  display: flex; 
+  justify-content:space-between;
+  align-items:center; 
+}
+.sizeOption.active{
+background-color: #3e7ceb;
+}
+.cart-items{
+  display: flex;
+  justify-content: space-between;
+}
 
 /* Responsive Style */
 @media (max-width: 768px) {
@@ -914,6 +927,18 @@ footer .inner-content p a {
     background-image: url(../images/hero-header-mobile.jpg);
     background-size: cover;
     background-position: center;
+  }
+  .cart-items{
+    display: flex;
+    
+    flex-direction: column;
+  }
+  .add-button{
+    width: 50% !important;
+    margin-top: 20px;
+  }
+  .cart-list{
+    display: flex; justify-content: space-between;align-items: center; gap: 20px
   }
   .page-heading .text-content h4 {
     font-size: 22px;

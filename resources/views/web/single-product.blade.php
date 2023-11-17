@@ -1,5 +1,22 @@
 @extends('web_layouts.main')
 @section('content')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var buttons = document.querySelectorAll('.sizeOption');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Remove the 'active' class from all buttons
+                buttons.forEach(function (btn) {
+                    btn.classList.remove('active');
+                });
+
+                // Add the 'active' class to the clicked button
+                button.classList.add('active'); console.log("yarab")
+            });
+        });
+    });
+</script>
     <div
         class="page-heading about-heading header-text"
         style="background-image: url({{ asset('web_assets/images/posebg.jpg') }})"
@@ -69,10 +86,11 @@
                         <p style="color:white" class="lead">{{ $product->description }}</p>
 
                         <br/>
-                        <div class="row">
+                        <div class="row cart-list" >
                             <div class="col-sm-4">
                                 <label style="color:white">Size</label>
-                                <div class="sizePicker">
+                                <div class="sizePicker button-group">
+                                  
                                     <div class="sizeOption" onclick="size_select('S')">
                                         <p style="color:white; font-size: 20px">S</p>
                                     </div>
@@ -120,12 +138,12 @@
                             {{--                                        </div>--}}
                             {{--                                    </div>--}}
                             @auth
-                                <div class="col-sm-4">
-                                    <input value="Add to Cart" class="btn btn-primary btn-block" type="submit"/>
+                                <div class="col-sm-4  add-button" style="align-self: flex-end">
+                                    <input value="Add to Cart " class="btn btn-primary btn-block add-buton" type="submit"/>
                                 </div>
                             @else
-                                <div class="col-sm-4">
-                                    <a class="btn btn-primary btn-block" href="{{ url('/signup') }}">Add to
+                                <div class="col-sm-4  add-button" style="align-self: flex-end">
+                                    <a class="btn btn-primary btn-block  add-button" href="{{ url('/signup') }}">Add to
                                         cart</a>
                                 </div>
                             @endauth
@@ -175,7 +193,7 @@
                                          src="{{ asset($single_product->image) }}" alt=""/>
                                 </div>
                             </a>
-                            <div class="down-content">
+                            <div class="down-content" style="width:100%">
                                 <a href="{{ url('/products/'. $single_product->id) }}"
                                 ><h4>{{ $single_product->name }}</h4></a
                                 >
@@ -185,11 +203,11 @@
                                             <del style="color:white; font-size:15px; text-align:center;">
                                                 {{ $single_product->price }} EGP
                                             </del>
-                                            <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $single_product->discount_price }}
+                                            <p style="color:#3e7ceb; margin:0px; font-size:17px; font-weight:600">    {{ $single_product->discount_price }}
                                                 EGP - {{ $single_product->points_price }} Points</p>
                                         </div>
                                     @else
-                                        <p style="color:#3e7ceb; margin:0px; font-size:22px; text-align:center">    {{ $single_product->price }}
+                                        <p style="color:#3e7ceb; margin:0px; font-size:17px; font-weight:600">    {{ $single_product->price }}
                                             EGP - {{ $single_product->points_price }} Points</p>
                                     @endif
                                 </h6>

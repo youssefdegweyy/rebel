@@ -2,7 +2,7 @@
 @section('content')
     <div
         class="page-heading about-heading header-text"
-        style="background-image: url({{ asset('web_assets/images/heading-6-1920x500.jpg') }})">
+        >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

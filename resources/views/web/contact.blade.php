@@ -2,13 +2,13 @@
 @section('content')
     <div
         class="page-heading contact-heading header-text"
-        style="background-image: url({{ asset('web_assets/images/heading-4-1920x500.jpg') }})"
+       
     >
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4>Lorem ipsum dolor</h4>
+                        <h4>Ruling The Fashion Frontier</h4>
                         <h2>Contact Us</h2>
                     </div>
                 </div>
@@ -21,21 +21,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>Our Location on Maps</h2>
+                        <h2>Our Contact Information</h2>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div id="map">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                            width="100%"
-                            height="330px"
-                            frameborder="0"
-                            style="border: 0"
-                            allowfullscreen
-                        ></iframe>
-                    </div>
-                </div>
+               
                 <div class="col-md-4">
                     <div class="left-content">
                         <h4>About our office</h4>
@@ -47,17 +36,9 @@
                         </p>
                         <ul class="social-icons">
                             <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="https://instagram.com/rebel_eg?igshid=NGVhN2U2NjQ0Yg=="><i class="fa fa-instagram"></i></a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -153,11 +134,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="{{asset('web_assets/images/team_01.jpg')}}" class="img-fluid" alt=""/>
-
-                    <h5 class="text-center" style="margin-top: 15px">John Doe</h5>
-                </div>
+               
             </div>
         </div>
     </div>
