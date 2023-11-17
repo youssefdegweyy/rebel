@@ -111,10 +111,13 @@ a.filled-button:hover {
   .order-item p {
     font-size: 14px;
   }
-  .codeDiv{
-    width: 100%;
-  }
-  .page-heading{
-    width: 100%;
+
+  .liContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
   }
 }
